@@ -10,6 +10,8 @@ int _printf(const char *format, ...)
 		{"c", char_func},
 		{"s", str_func},
 		{"%", func_percent},
+		{"d", dig_func},
+		{"i", dig_func},
 		{NULL, NULL}};
 
 	va_list list;
