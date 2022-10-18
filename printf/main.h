@@ -24,5 +24,6 @@ int func_percent(va_list list);
 int char_func(va_list list);
 int str_func(va_list list);
 int get_func(const char *format, va_list list, pr_fmt pr_format[]);
+int dig_func(va_list list);
 
 #endif /*MAIN_H*/
