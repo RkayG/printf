@@ -11,39 +11,19 @@
 
 int _printf(const char *format, ...)
 {
-	char *str;
-	const char *ptr;
-	int i = 0, c;
-
+	pr_fmt pr_format[] = {
+		{"c", char_func},
+		{"s", str_func},
+		{"%", func_percent},
+		{"d", dig_func},
+		{"i", dig_func},
+		{NULL, NULL},
+	};
 	va_list list;
+	int count = 0;
 
 	va_start(list, format);
-	for (ptr = format; *ptr; ptr++)
-	{
-		if (*ptr != '%')
-		{
-			_putchar(*ptr);
-			continue;
-		}
-		switch (*ptr++)
-		{
-			case 's':
-				for (str = va_arg(list, char*); str[i] != '\0'; i++)
-					_putchar(str[i]);
-				break;
-			case 'c':
-				c = va_arg(list, int);
-				_putchar(c);
-				i = 1;
-				break;
-			default:
-				_putchar(*ptr);
-				break;
-		}
-	}
-	if (format == NULL)
-		return (-1);
-
+	count = get_func(format, list, pr_format);
 	va_end(list);
-	return (i);
+	return (count);
 }
